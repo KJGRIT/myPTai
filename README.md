@@ -1,73 +1,126 @@
-# React + TypeScript + Vite
+🏋️ AI 기반 운동 자세 인식 웹 애플리케이션
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+웹캠과 **TensorFlow.js 기반 이미지 인식 모델(Teachable Machine)**을 활용하여
+운동 자세를 실시간으로 인식하고, 운동 횟수와 세트 수를 자동으로 측정하며
+올바른 운동 자세를 이미지로 안내하는 AI 웹 애플리케이션입니다.
 
-Currently, two official plugins are available:
+📌 프로젝트 개요
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+프로젝트 주제
+웹캠 기반 이미지 인식 AI를 활용한 운동 자세 분석 및 운동량 측정 웹 애플리케이션
 
-## React Compiler
+개발 목적
+운동 중 자신의 자세를 확인하기 어려운 문제를 해결하고,
+이미지 인식 AI를 실제 웹 서비스 형태로 구현해보기 위함
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+개발 형태
+학교 과제용 개인 프로젝트
 
-## Expanding the ESLint configuration
+🎯 주요 기능
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+웹캠을 통한 실시간 운동 자세 인식
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+운동 동작 기반 자동 반복 횟수 측정
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+반복 횟수 누적을 통한 세트 수 자동 계산
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+잘못된 자세 인식 시 올바른 운동 자세 이미지 표시
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+별도의 서버 없이 브라우저에서 AI 실행
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🛠 기술 스택
+Frontend
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React + Vite
+빠른 개발 환경과 컴포넌트 기반 UI 구성
+
+TypeScript
+정적 타입을 통한 코드 안정성 및 가독성 향상
+
+AI / Machine Learning
+
+Teachable Machine
+TensorFlow.js 기반 이미지 인식 모델 제작 도구
+
+TensorFlow.js
+학습된 모델을 웹 브라우저에서 실시간 실행
+
+🧠 이미지 인식 모델 설명
+
+Google의 Teachable Machine을 사용하여 이미지 인식 모델을 제작
+
+운동 동작별 클래스를 정의하고 웹캠을 통해 이미지 데이터 수집
+
+학습된 모델을 TensorFlow.js 형식으로 export
+
+웹 애플리케이션에서 모델을 불러와 실시간 이미지 분류 수행
+
+⚙️ 동작 원리
+
+웹캠을 통해 실시간 영상 입력
+
+영상 프레임을 이미지 인식 모델에 전달
+
+모델이 현재 운동 동작을 분류
+
+동작 상태 변화 패턴을 감지하여 반복 횟수 계산
+
+반복 횟수 누적 시 세트 수 자동 증가
+
+잘못된 자세로 판단될 경우 올바른 자세 이미지 제공
+
+🖼 구현 결과
+
+현재 운동 상태, 반복 횟수, 세트 수를 실시간으로 화면에 표시
+
+자세 인식 결과에 따라 즉각적인 시각적 피드백 제공
+
+별도의 장비 없이 웹캠만으로 사용 가능
+
+✅ 장점
+
+브라우저 기반 AI로 별도 서버 불필요
+
+실시간 운동 피드백 제공
+
+웹 기술과 AI를 결합한 실용적인 구현 사례
+
+⚠️ 한계점
+
+조명, 카메라 각도에 따라 인식 정확도 차이 발생
+
+복잡한 운동 동작에는 인식 정확도 한계
+
+개인별 체형 차이에 따른 오차 가능성
+
+🔧 개선 방향
+
+학습 데이터 확장으로 인식 정확도 개선
+
+더 다양한 운동 종목 추가
+
+관절 포인트 기반 인식 모델 도입 검토
+
+UI/UX 개선을 통한 사용자 경험 향상
+
+💡 느낀 점
+
+본 프로젝트를 통해 이미지 인식 AI와 웹 기술을 결합한 실제 서비스 구현 과정을 경험할 수 있었으며,
+AI 모델의 정확도뿐만 아니라 사용자에게 결과를 어떻게 전달할지에 대한
+UI와 사용자 경험의 중요성을 함께 배울 수 있었습니다.
+
+📎 참고 기술
+
+React
+
+Vite
+
+TypeScript
+
+TensorFlow.js
+
+Teachable Machine
+
+👤 개발자
+
+박경준 (학교 과제)
